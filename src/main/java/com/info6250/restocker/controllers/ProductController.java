@@ -1,0 +1,56 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.info6250.restocker.controllers;
+
+import com.info6250.restocker.dao.ProductDao;
+import com.info6250.restocker.models.Product;
+import com.info6250.restocker.services.ProductService;
+import java.time.LocalDate;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ *
+ * @author tanmay
+ */
+@Controller
+@RequestMapping("/products")
+public class ProductController {
+
+    @Autowired
+    private ProductDao productDao;
+
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping
+    public String listProducts(Model model) {
+
+        List<Product> products = productDao.findAll();
+        System.out.println("Products fetched: " + products.size()); // Debug log
+        model.addAttribute("products", products);
+        model.addAttribute("expiringProducts", productService.getExpiringProducts());
+        model.addAttribute("today", LocalDate.now());
+        return "products/list";
+    }
+
+    @GetMapping("/new")
+    public String showCreateForm(Model model) {
+        model.addAttribute("product", new Product());
+        return "products/create";
+    }
+
+    @PostMapping
+    public String createProduct(@ModelAttribute Product product) {
+        productDao.save(product);
+        return "redirect:/products";
+    }
+}

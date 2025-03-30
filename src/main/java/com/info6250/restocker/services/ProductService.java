@@ -22,8 +22,7 @@ public class ProductService {
     @Autowired
     private ProductDao productDao;
 
-    public List<Product> getExpiringProducts() {
-        LocalDate threshold = LocalDate.now().plusDays(7);
+    public List<Product> getExpiringProducts(LocalDate threshold) {
         return productDao.findExpiringProducts(threshold);
     }
     

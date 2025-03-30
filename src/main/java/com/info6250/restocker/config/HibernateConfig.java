@@ -4,6 +4,7 @@
  */
 package com.info6250.restocker.config;
 
+import com.info6250.restocker.models.Notification;
 import com.info6250.restocker.models.DonationCenter;
 import com.info6250.restocker.models.Product;
 import java.util.Properties;
@@ -43,6 +44,7 @@ public class HibernateConfig {
                 .addPackage("com.info6250.restocker.models")
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(DonationCenter.class)
+                .addAnnotatedClass(Notification.class)
                 .buildSessionFactory(registry);
     }
 

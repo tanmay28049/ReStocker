@@ -8,6 +8,7 @@ import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -22,6 +23,7 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
  */
 @Configuration
 @EnableWebMvc
+@EnableScheduling 
 @ComponentScan(basePackages = "com.info6250.restocker")
 public class WebConfig implements WebMvcConfigurer {
 

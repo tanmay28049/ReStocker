@@ -27,6 +27,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/ReStocker/products/new">Add Product</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ReStocker/notifications">
+                                Notifications
+                                <span th:if="${notifications != null and !notifications.empty}" 
+                                      class="badge bg-danger ms-1"
+                                      th:text="${notifications.size()}"></span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

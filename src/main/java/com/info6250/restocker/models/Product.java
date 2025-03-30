@@ -8,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
@@ -21,8 +24,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotBlank(message = "Product name is required")
     private String name;
+    
+    @NotBlank(message = "Barcode is required")
     private String barcode;
+    
+    @FutureOrPresent(message = "Expiry date must be in the future")
     private LocalDate expiryDate;
     
     // Getters and setters

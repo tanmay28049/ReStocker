@@ -22,6 +22,15 @@
                         <label class="form-label">Expiry Date</label>
                         <input type="date" class="form-control" th:field="*{expiryDate}" required>
                     </div>
+                    <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger">
+                        <span th:errors="*{name}"></span>
+                    </div>
+                    <div th:if="${#fields.hasErrors('barcode')}" class="alert alert-danger">
+                        <span th:errors="*{barcode}"></span>
+                    </div>
+                    <div th:if="${#fields.hasErrors('expiryDate')}" class="alert alert-danger">
+                        <span th:errors="*{expiryDate}"></span>
+                    </div>
                     <button type="submit" class="btn btn-primary w-100">Save Product</button>
                 </form>
             </div>

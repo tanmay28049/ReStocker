@@ -71,4 +71,12 @@ public class ProductDaoImpl implements ProductDao {
         session.getTransaction().commit();
         return products;
     }
+    
+    @Override
+    public void update(Product product) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        session.merge(product);
+        session.getTransaction().commit();
+    }
 }

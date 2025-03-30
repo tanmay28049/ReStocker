@@ -17,5 +17,6 @@ public interface ProductDao {
     List<Product> findAll();
     Product findById(Long id);
     void delete(Product product);
+    void update(Product product);
     List<Product> findExpiringProducts(LocalDate threshold);
 }

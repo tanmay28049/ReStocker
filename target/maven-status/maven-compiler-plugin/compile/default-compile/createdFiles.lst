@@ -1,11 +1,11 @@
-com/info6250/restocker/dao/ProductDao.class
 com/info6250/restocker/JakartaRestConfiguration.class
-com/info6250/restocker/AppInitializer.class
 com/info6250/restocker/services/ProductService.class
-com/info6250/restocker/config/WebConfig.class
 com/info6250/restocker/dao/ProductDaoImpl.class
-com/info6250/restocker/controllers/ProductController.class
 com/info6250/restocker/resources/JakartaEE11Resource.class
-com/info6250/restocker/controllers/HomeController.class
 com/info6250/restocker/config/HibernateConfig.class
+com/info6250/restocker/dao/ProductDao.class
+com/info6250/restocker/AppInitializer.class
+com/info6250/restocker/config/WebConfig.class
+com/info6250/restocker/controllers/ProductController.class
+com/info6250/restocker/controllers/HomeController.class
 com/info6250/restocker/models/Product.class

@@ -19,4 +19,5 @@ public interface ProductDao {
     void delete(Product product);
     void update(Product product);
     List<Product> findExpiringProducts(LocalDate threshold);
+    void addDonationSuggestion(Long productId, Long centerId);
 }

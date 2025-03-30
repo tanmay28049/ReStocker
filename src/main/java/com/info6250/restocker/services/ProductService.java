@@ -25,4 +25,8 @@ public class ProductService {
         LocalDate threshold = LocalDate.now().plusDays(7);
         return productDao.findExpiringProducts(threshold);
     }
+    
+    public void addDonationSuggestion(Long productId, Long centerId) {
+        productDao.addDonationSuggestion(productId, centerId);
+    }
 }

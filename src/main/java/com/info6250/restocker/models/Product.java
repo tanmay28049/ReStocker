@@ -8,11 +8,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,6 +38,14 @@ public class Product {
     @FutureOrPresent(message = "Expiry date must be in the future")
     private LocalDate expiryDate;
     
+    @ManyToMany
+    @JoinTable(
+        name = "product_donation_center",
+        joinColumns = @JoinColumn(name = "product_id"),
+        inverseJoinColumns = @JoinColumn(name = "center_id")
+    )
+    private List<DonationCenter> suggestedCenters = new ArrayList<>();
+    
     // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -42,4 +55,8 @@ public class Product {
     public void setBarcode(String barcode) { this.barcode = barcode; }
     public LocalDate getExpiryDate() { return expiryDate; }
     public void setExpiryDate(LocalDate expiryDate) { this.expiryDate = expiryDate; }
+    public List<DonationCenter> getSuggestedCenters() { return suggestedCenters; }
+    public void setSuggestedCenters(List<DonationCenter> suggestedCenters) { 
+        this.suggestedCenters = suggestedCenters; 
+    }
 }

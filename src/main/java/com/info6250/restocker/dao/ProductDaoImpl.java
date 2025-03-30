@@ -4,6 +4,7 @@
  */
 package com.info6250.restocker.dao;
 
+import com.info6250.restocker.models.DonationCenter;
 import com.info6250.restocker.models.Product;
 import java.time.LocalDate;
 import java.util.List;
@@ -12,16 +13,15 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 /**
  *
  * @author tanmay
  */
 @Repository
 public class ProductDaoImpl implements ProductDao {
-    
+
     private final SessionFactory sessionFactory;
-    
+
     public ProductDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -38,7 +38,12 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> findAll() {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        List<Product> products = session.createQuery("FROM Product", Product.class).list();
+
+        List<Product> products = session.createQuery(
+                "SELECT DISTINCT p FROM Product p LEFT JOIN FETCH p.suggestedCenters",
+                Product.class
+        ).list();
+
         session.getTransaction().commit();
         return products;
     }
@@ -71,12 +76,28 @@ public class ProductDaoImpl implements ProductDao {
         session.getTransaction().commit();
         return products;
     }
-    
+
     @Override
     public void update(Product product) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.merge(product);
+        session.getTransaction().commit();
+    }
+
+    @Override
+    public void addDonationSuggestion(Long productId, Long centerId) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+
+        Product product = session.get(Product.class, productId);
+        DonationCenter center = session.get(DonationCenter.class, centerId);
+
+        if (product != null && center != null) {
+            product.getSuggestedCenters().add(center);
+            session.merge(product);
+        }
+
         session.getTransaction().commit();
     }
 }

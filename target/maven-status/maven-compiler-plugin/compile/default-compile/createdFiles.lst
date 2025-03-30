@@ -1,3 +1,4 @@
+com/info6250/restocker/controllers/SuggestionController.class
 com/info6250/restocker/JakartaRestConfiguration.class
 com/info6250/restocker/services/ProductService.class
 com/info6250/restocker/dao/ProductDaoImpl.class

@@ -40,7 +40,7 @@ public class HibernateConfig {
                 .build();
         
         return new org.hibernate.cfg.Configuration()
-                .addPackage("com.restocker.entities")
+                .addPackage("com.info6250.restocker.models")
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(DonationCenter.class)
                 .buildSessionFactory(registry);

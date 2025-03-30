@@ -6,6 +6,7 @@ package com.info6250.restocker.controllers;
 
 import com.info6250.restocker.dao.ProductDao;
 import com.info6250.restocker.models.Product;
+import com.info6250.restocker.services.DonationCenterService;
 import com.info6250.restocker.services.ProductService;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
@@ -34,13 +35,17 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-
+    
+    @Autowired
+    private DonationCenterService donationCenterService;
+    
     @GetMapping
     public String listProducts(Model model) {
 
         List<Product> products = productDao.findAll();
         model.addAttribute("products", products);
         model.addAttribute("expiringProducts", productService.getExpiringProducts());
+        model.addAttribute("allCenters", donationCenterService.getAllCenters());
         model.addAttribute("today", LocalDate.now());
         return "products/list";
     }

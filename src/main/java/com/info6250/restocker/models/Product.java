@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 
@@ -46,6 +47,9 @@ public class Product {
     )
     private List<DonationCenter> suggestedCenters = new ArrayList<>();
     
+    @Transient
+    private Integer discountPercentage;
+    
     // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -58,5 +62,9 @@ public class Product {
     public List<DonationCenter> getSuggestedCenters() { return suggestedCenters; }
     public void setSuggestedCenters(List<DonationCenter> suggestedCenters) { 
         this.suggestedCenters = suggestedCenters; 
+    }
+    public Integer getDiscountPercentage() { return discountPercentage; }
+    public void setDiscountPercentage(Integer discountPercentage) {
+        this.discountPercentage = discountPercentage;
     }
 }

@@ -16,8 +16,7 @@
                 </div>
 
                 <!-- Alert Section -->
-                <div th:if="${!expiringProducts.isEmpty()}" 
-                     class="alert alert-warning alert-expiring mb-4 shadow-sm">
+                <div th:if="${!expiringProducts.isEmpty()}" class="alert alert-warning alert-expiring mb-4">
                     <h5 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Expiring Soon!</h5>
                     <hr>
                     <div class="row">
@@ -27,6 +26,12 @@
                                     <h6 th:text="${product.name}" class="card-title"></h6>
                                     <p class="card-text text-muted small">
                                         Expires: <span th:text="${#temporals.format(product.expiryDate, 'MMM dd')}"></span>
+                                        <br>
+                                        <span th:if="${product.discountPercentage != null}">
+                                            Suggested Discount: 
+                                            <span class="text-danger" 
+                                                  th:text="'%' + ${product.discountPercentage}"></span>
+                                        </span>
                                     </p>
                                 </div>
                             </div>
@@ -44,6 +49,7 @@
                                     <th>Barcode</th>
                                     <th>Expiry Date</th>
                                     <th>Days Remaining</th>
+                                    <th>Suggested Discount</th>
                                     <th>Suggested Centers</th>
                                     <th>Actions</th>
                                 </tr>
@@ -63,6 +69,13 @@
                                     <td>
                                         <span th:class="${T(java.time.temporal.ChronoUnit).DAYS.between(today, product.expiryDate) <= 7 ? 'badge bg-warning text-dark' : 'badge bg-success'}" 
                                               th:text="${T(java.time.temporal.ChronoUnit).DAYS.between(today, product.expiryDate)}"></span>
+                                    </td>
+                                    <td>
+                                        <span th:if="${product.discountPercentage != null}" 
+                                              class="badge bg-danger"
+                                              th:text="'%' + ${product.discountPercentage}"></span>
+                                        <span th:unless="${product.discountPercentage != null}" 
+                                              class="text-muted">N/A</span>
                                     </td>
                                     <td>
                                         <div class="dropdown">

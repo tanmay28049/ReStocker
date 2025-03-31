@@ -7,6 +7,7 @@
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/controllers/HomeController.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/controllers/NotificationController.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/controllers/ProductController.java
+/Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/controllers/ReportController.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/controllers/SuggestionController.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/dao/DonationCenterDao.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/dao/DonationCenterDaoImpl.java

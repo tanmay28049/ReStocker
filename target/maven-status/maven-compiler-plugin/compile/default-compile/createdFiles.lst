@@ -1,3 +1,4 @@
+com/info6250/restocker/controllers/ReportController.class
 com/info6250/restocker/JakartaRestConfiguration.class
 com/info6250/restocker/dao/ProductDaoImpl.class
 com/info6250/restocker/config/HibernateConfig.class

@@ -4,9 +4,11 @@
  */
 package com.info6250.restocker.dao;
 
+import com.info6250.restocker.models.DonationCenter;
 import com.info6250.restocker.models.Product;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -20,4 +22,7 @@ public interface ProductDao {
     void update(Product product);
     List<Product> findExpiringProducts(LocalDate threshold);
     void addDonationSuggestion(Long productId, Long centerId);
+    List<Product> findExpiringProductsBetweenDates(LocalDate start, LocalDate end);
+    Map<LocalDate, List<Product>> findExpiredProductsByDate(LocalDate start, LocalDate end);
+    Map<DonationCenter, List<Product>> findProductsNeedingDonation();
 }

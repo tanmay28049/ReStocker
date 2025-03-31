@@ -7,7 +7,11 @@ package com.info6250.restocker.dao;
 import com.info6250.restocker.models.DonationCenter;
 import com.info6250.restocker.models.Product;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,5 +103,54 @@ public class ProductDaoImpl implements ProductDao {
         }
 
         session.getTransaction().commit();
+    }
+
+    @Override
+    public List<Product> findExpiringProductsBetweenDates(LocalDate start, LocalDate end) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        List<Product> products = session.createQuery(
+                "FROM Product p WHERE p.expiryDate BETWEEN :start AND :end", Product.class)
+                .setParameter("start", start)
+                .setParameter("end", end)
+                .list();
+        session.getTransaction().commit();
+        return products;
+    }
+
+    @Override
+    public Map<LocalDate, List<Product>> findExpiredProductsByDate(LocalDate start, LocalDate end) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        List<Product> products = session.createQuery(
+                "FROM Product p WHERE p.expiryDate BETWEEN :start AND :end", Product.class)
+                .setParameter("start", start)
+                .setParameter("end", end)
+                .list();
+
+        Map<LocalDate, List<Product>> trends = products.stream()
+                .collect(Collectors.groupingBy(Product::getExpiryDate));
+
+        session.getTransaction().commit();
+        return trends;
+    }
+
+    @Override
+    public Map<DonationCenter, List<Product>> findProductsNeedingDonation() {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        List<Product> products = session.createQuery(
+                "FROM Product p WHERE size(p.suggestedCenters) > 0", Product.class)
+                .list();
+
+        Map<DonationCenter, List<Product>> suggestions = new HashMap<>();
+        products.forEach(product -> {
+            product.getSuggestedCenters().forEach(center -> {
+                suggestions.computeIfAbsent(center, k -> new ArrayList<>()).add(product);
+            });
+        });
+
+        session.getTransaction().commit();
+        return suggestions;
     }
 }

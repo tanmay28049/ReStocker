@@ -36,7 +36,7 @@ public class Product {
     @NotBlank(message = "Barcode is required")
     private String barcode;
     
-    @FutureOrPresent(message = "Expiry date must be in the future")
+//    @FutureOrPresent(message = "Expiry date must be in the future")
     private LocalDate expiryDate;
     
     @ManyToMany

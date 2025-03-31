@@ -7,6 +7,7 @@ package com.info6250.restocker.config;
 import com.info6250.restocker.models.Notification;
 import com.info6250.restocker.models.DonationCenter;
 import com.info6250.restocker.models.Product;
+import com.info6250.restocker.models.User;
 import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -45,6 +46,7 @@ public class HibernateConfig {
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(DonationCenter.class)
                 .addAnnotatedClass(Notification.class)
+                .addAnnotatedClass(User.class)
                 .buildSessionFactory(registry);
     }
 

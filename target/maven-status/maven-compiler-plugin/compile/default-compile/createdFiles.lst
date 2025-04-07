@@ -16,6 +16,7 @@ com/info6250/restocker/services/NotificationService.class
 com/info6250/restocker/controllers/DonationCenterController.class
 com/info6250/restocker/controllers/SuggestionController.class
 com/info6250/restocker/services/UserService.class
+com/info6250/restocker/services/BarcodeService.class
 com/info6250/restocker/services/ProductService.class
 com/info6250/restocker/resources/JakartaEE11Resource.class
 com/info6250/restocker/dao/NotificationDao.class

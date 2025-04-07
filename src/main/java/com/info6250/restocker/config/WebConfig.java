@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -24,7 +25,7 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@EnableScheduling 
+@EnableScheduling
 @ComponentScan(basePackages = "com.info6250.restocker")
 public class WebConfig implements WebMvcConfigurer {
 
@@ -59,5 +60,10 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("/static/");
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("/webjars/");
+    }
+
+    @Bean
+    public RequestContextListener requestContextListener() {
+        return new RequestContextListener();
     }
 }

@@ -4,6 +4,7 @@
  */
 package com.info6250.restocker.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class Product {
     private String name;
     
     @NotBlank(message = "Barcode is required")
+    @Column(unique = true)
     private String barcode;
     
 //    @FutureOrPresent(message = "Expiry date must be in the future")

@@ -25,6 +25,7 @@
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/models/Product.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/models/User.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/resources/JakartaEE11Resource.java
+/Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/services/BarcodeService.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/services/DonationCenterService.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/services/NotificationService.java
 /Users/tanmay/Desktop/INFO6250/FinalProject/ReStocker/src/main/java/com/info6250/restocker/services/ProductService.java

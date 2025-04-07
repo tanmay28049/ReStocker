@@ -153,4 +153,15 @@ public class ProductDaoImpl implements ProductDao {
         session.getTransaction().commit();
         return suggestions;
     }
+
+    @Override
+    public Product findByBarcode(String barcode) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Product product = session.createQuery("FROM Product WHERE barcode = :barcode", Product.class)
+                .setParameter("barcode", barcode)
+                .uniqueResult();
+        session.getTransaction().commit();
+        return product;
+    }
 }

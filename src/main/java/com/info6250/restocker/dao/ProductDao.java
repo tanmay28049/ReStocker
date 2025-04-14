@@ -26,4 +26,5 @@ public interface ProductDao {
     Map<LocalDate, List<Product>> findExpiredProductsByDate(LocalDate start, LocalDate end);
     Map<DonationCenter, List<Product>> findProductsNeedingDonation();
     Product findByBarcode(String barcode);
+    List<Product> findAllSortedByExpiry();
 }

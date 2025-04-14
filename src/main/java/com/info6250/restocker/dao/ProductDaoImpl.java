@@ -164,4 +164,15 @@ public class ProductDaoImpl implements ProductDao {
         session.getTransaction().commit();
         return product;
     }
+    
+    @Override
+    public List<Product> findAllSortedByExpiry() {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        List<Product> products = session.createQuery(
+            "FROM Product p ORDER BY p.expiryDate ASC", Product.class)
+            .list();
+        session.getTransaction().commit();
+        return products;
+    }
 }

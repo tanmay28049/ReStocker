@@ -52,6 +52,9 @@ public class Product {
     @Transient
     private Integer discountPercentage;
     
+    @Transient
+    private Long daysUntilExpiry;
+    
     // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -68,5 +71,12 @@ public class Product {
     public Integer getDiscountPercentage() { return discountPercentage; }
     public void setDiscountPercentage(Integer discountPercentage) {
         this.discountPercentage = discountPercentage;
+    }
+    public Long getDaysUntilExpiry() {
+        return daysUntilExpiry;
+    }
+
+    public void setDaysUntilExpiry(Long daysUntilExpiry) {
+        this.daysUntilExpiry = daysUntilExpiry;
     }
 }

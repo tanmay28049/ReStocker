@@ -47,12 +47,8 @@ public class ProductController {
 
     @GetMapping
     public String listProducts(Model model) {
-        LocalDate today = LocalDate.now();
-        LocalDate threshold = LocalDate.now().plusDays(7);
-        List<Product> products = productDao.findAll();
-        products.forEach(p -> productService.calculateDiscount(p, today));
-        model.addAttribute("products", products);
-        model.addAttribute("expiringProducts", productService.getExpiringProducts(threshold));
+        model.addAttribute("products", productService.getAllProductsWithExpiryInfo());
+        model.addAttribute("expiringProducts", productService.getExpiringProducts(LocalDate.now().plusDays(7)));
         model.addAttribute("allCenters", donationCenterService.getAllCenters());
         model.addAttribute("today", LocalDate.now());
         return "products/list";

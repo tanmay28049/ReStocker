@@ -65,4 +65,19 @@ public class ProductService {
             product.setDiscountPercentage(null);
         }
     }
+    
+    public List<Product> getAllProductsWithExpiryInfo() {
+        List<Product> products = productDao.findAll();
+        LocalDate today = LocalDate.now();
+
+        products.forEach(product -> {
+            if(product.getExpiryDate() != null) {
+                long days = ChronoUnit.DAYS.between(today, product.getExpiryDate());
+                product.setDaysUntilExpiry(days);
+                calculateDiscount(product, today);
+            }
+        });
+
+        return products;
+    }
 }
